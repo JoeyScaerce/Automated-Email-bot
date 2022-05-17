@@ -10,22 +10,20 @@ public class EmailValidation {
     // use the java mail library to check if an email address is formatted correctly
     public static boolean isValidEmail(String email) {
         // check the formatting of an email for example an email address should have name@domain. if it doesn't have any of these it becomes false
-        boolean isValid = true;
         try {
             InternetAddress emailAddr = new InternetAddress(email);
             emailAddr.validate();
+            return true;
         } catch (Exception e) {
-            System.out.println("This is not a valid email");
-            isValid = false;
+            System.out.println("The format of this email is incorrect please do name@domain.com");
+            return false;
         }
-        return isValid;
     }
 
     // gets user domain of email. the domain is usually the @gmail.com part
     public static String getDomain(String email) {
         // get the index of an @ symbol.
         int getAtSymbol = email.indexOf("@");
-        System.out.println("the domain of this user is >>> " + email.substring(getAtSymbol+1));
         // returns the domain name without the @.
         return email.substring(getAtSymbol+1);
     }
@@ -50,7 +48,7 @@ public class EmailValidation {
             return true;
 
         } catch (Exception e ) {
-            System.out.println("There seem to be no domain with the address please try again");
+            System.out.println("There seem to be no domain with the address please insure that the address you put in is correct.");
             return false;
         }
 
